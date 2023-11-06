@@ -363,3 +363,70 @@ Cypress.Commands.add("loginByGoogleApi", () => {
     });
   });
 });
+
+Cypress.Commands.add("signUpUser", (user) => {
+  cy.get('[data-test="signup"]').click();
+  cy.get('#firstName').type(user.firstName);
+  cy.get('#lastName').type(user.lastName);
+  cy.get('#username').type(user.username);
+  cy.get('#password').type(user.password);
+  cy.get('#confirmPassword').type(user.password);
+  cy.get('[data-test="signup-submit"]').click();
+});
+
+Cypress.Commands.add("verifyUsername", (username) => {
+  cy.get('[data-test=sidenav-username]').should('exist').contains(username);
+});
+
+Cypress.Commands.add("verifyEmail", (email) => {
+  cy.get('[data-test="sidenav-user-settings"]').click();
+  cy.get('h2').should('have.text', 'User Settings');
+  cy.get('#user-settings-email-input').should('have.value', email);
+});
+
+Cypress.Commands.add("updateFirstName", (newName) => {
+  cy.get('#user-settings-firstName-input').clear().type(newName);
+  cy.get('[data-test="user-settings-submit"]').click();
+  cy.reload();
+  cy.get('#user-settings-firstName-input').should("have.value", newName);
+});
+
+Cypress.Commands.add("verifyBalance", (balance) => {
+  cy.get('[data-test="sidenav-user-balance"]').should('exist').should('have.text', balance);
+})
+
+Cypress.Commands.add("openMineTransactions", () => { cy.get('[data-test="nav-personal-tab"]').click(); })
+
+Cypress.Commands.add("verifyTransactionInList", (id, amount) => {
+  cy.get(`[data-test="transaction-amount-${id}"]`).should('exist')
+    .should('have.text', amount);
+});
+
+Cypress.Commands.add("openTransaction", (id) => {
+  cy.get(`[data-test="transaction-amount-${id}"]`).click();
+  cy.get('h2[data-test="transaction-detail-header"]').should('have.text', 'Transaction Detail');
+});
+
+Cypress.Commands.add("verifySeparateTransaction", (id, amount) => {
+  cy.get(`[data-test="transaction-amount-${id}"]`).should('exist')
+    .should('have.text', amount);
+});
+
+Cypress.Commands.add("createBankAccount", (bank, number, account) => {
+  cy.get('[data-test="sidenav-bankaccounts"]').click();
+  cy.get('[data-test="bankaccount-new"]').click()
+
+  cy.get('#bankaccount-bankName-input').type(bank);
+  cy.get('#bankaccount-routingNumber-input').type(number);
+  cy.get('#bankaccount-accountNumber-input').type(account);
+  cy.get('[data-test="bankaccount-submit"]').click();
+
+  cy.get("li[data-test]").contains(bank).should('exist');
+});
+
+Cypress.Commands.add("deleteBankAccount", (id, name) => {
+  cy.get('[data-test="sidenav-bankaccounts"]').click();
+
+  cy.get(`li[data-test="bankaccount-list-item-${id}"] button[data-test="bankaccount-delete"]`).click();
+  cy.get(`li[data-test="bankaccount-list-item-${id}"]`).should('have.text', `${name} (Deleted)`)
+})

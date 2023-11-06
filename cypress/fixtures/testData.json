@@ -1,0 +1,47 @@
+{
+  "api": {
+    "testuser": {
+      "username": "Allie2",
+      "password": "s3cret",
+      "firstName": "Kaylin",
+      "lastName": "Homenick",
+      "id": "bDjUb4ir5O",
+      "balance": "$1,648.67",
+      "email": "Rebeca35@yahoo.com"
+    },
+    "bankAccountToDelete": {
+      "id": "u9hwi1YwtqW"
+    },
+    "transactionIdToComment": "Ak4sstv9O-8"
+  },
+  "ui": {
+    "testuser": {
+      "username": "Giovanna74",
+      "password": "s3cret",
+      "firstName": "Ibrahim",
+      "lastName": "Dickens",
+      "id": "24VniajY1y",
+      "balance": "$1,457.79",
+      "email": "Pearl56@gmail.com"
+    },
+    "newUser": {
+      "username": "cy_newuser",
+      "firstName": "CyFirstName",
+      "lastName": "CyLastName",
+      "password": "s3cret"
+    },
+    "invaliduser": {
+      "username": "invalid_username",
+      "password": "invalid_password"
+    },
+    "transactionIdToCheck": "OeGyvqzQQQ9N",
+    "transactionAmountToCheck": "-$140.36",
+    "bankAccount": {
+      "bankName": "ABC-bank",
+      "routingNumber": "123456789",
+      "accountNumber": "PQ987654321"
+    },
+    "bankAccountIdToDelete": "rLn5MeHrzAc",
+    "bankAccountNameToDelete": "Koch, Bergstrom and Turner Bank"
+  }
+}
