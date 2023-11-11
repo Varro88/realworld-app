@@ -1,0 +1,17 @@
+{
+  "users": {
+    "test": {
+      "username": "Tavares_Barrows",
+      "password": "s3cret",
+      "firstName": "Arely",
+      "lastName": "Kertzmann",
+      "id": "qywYp6hS0U"
+    }
+  },
+  "bankAccounts": {
+    "idToDelete": "lWfxENA5ZNy"
+  },
+  "transactions": {
+    "idToComment": "-jCJOEkLh0J"
+  }
+}

@@ -23,6 +23,8 @@ cypress/videos
 cypress/screenshots
 .nyc_output
 
+/test-results
+
 # Ignore env local files - https://create-react-app.dev/docs/adding-custom-environment-variables/#what-other-env-files-can-be-used
 .env*.local
 

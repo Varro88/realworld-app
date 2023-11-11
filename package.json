@@ -182,7 +182,7 @@
     "codesandbox:start:api": "yarn tsnode:not-instrumented --files backend/app.ts",
     "codesandbox:start": "NODE_ENV=development TSC_COMPILE_ON_ERROR=true concurrently \"react-scripts start\" yarn:start:api:codesandbox",
     "postinstall": "husky install",
-    "pwtest": "yarn playwright test --ui --reporter=line --project=firefox"
+    "pwtest": "yarn playwright test --ui --project=firefox"
   },
   "eslintConfig": {
     "env": {
