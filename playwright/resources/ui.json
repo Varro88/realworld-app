@@ -1,0 +1,32 @@
+{
+  "users": {
+    "test": {
+      "username": "Katharina_Bernier",
+      "password": "s3cret",
+      "balance": "$1,681.37"
+    },
+    "new": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "username": "john_doe",
+      "password": "s3cret"
+    }
+  },
+  "transactions": {
+    "test": {
+      "id": "-7xanIywv9x",
+      "amount": "-$259.71"
+    }
+  },
+  "bankAccounts": {
+    "test": {
+      "bankName": "ABC-bank",
+      "routingNumber": "123456789",
+      "accountNumber": "PQ987654321"
+    },
+    "delete": {
+      "id": "RskoB7r4Bic",
+      "name": "O'Hara - Labadie Bank"
+    }
+  }
+}
