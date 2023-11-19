@@ -11,7 +11,7 @@ describe('Contacts', () => {
         cy.loginByApi(testData.testuser.username, testData.testuser.password);
     });
 
-    it.only('1 should get bank accounts', () => {
+    it('1 should get bank accounts', () => {
         cy.request({
             method: 'GET',
             url: `${Cypress.env("apiUrl")}/bankAccounts`,
@@ -21,7 +21,7 @@ describe('Contacts', () => {
         });
     });
 
-    it.only('2 should delete bank accounts', () => {
+    it('2 should delete bank accounts', () => {
         cy.request({
             method: 'DELETE',
             url: `${Cypress.env("apiUrl")}/bankAccounts/${testData.bankAccountToDelete.id}`,
@@ -31,7 +31,7 @@ describe('Contacts', () => {
         });
     });
 
-    it.only('3 should get user profile', () => {
+    it('3 should get user profile', () => {
         cy.request({
             method: 'GET',
             url: `${Cypress.env("apiUrl")}/users/profile/${testData.testuser.username}`,
@@ -42,7 +42,7 @@ describe('Contacts', () => {
         });
     });
 
-    it.only('4 should create comment for transaction', () => {
+    it('4 should create comment for transaction', () => {
         cy.request({
             method: 'POST',
             url: `${Cypress.env("apiUrl")}/comments/${testData.transactionIdToComment}`,
@@ -55,7 +55,7 @@ describe('Contacts', () => {
         });
     });
 
-    it.only('5 should get list of users', () => {
+    it('5 should get list of users', () => {
         cy.request({
             method: 'GET',
             url: `${Cypress.env("apiUrl")}/users`,

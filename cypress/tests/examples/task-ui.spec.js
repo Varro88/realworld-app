@@ -54,7 +54,6 @@ describe('Login spec', () => {
         cy.createBankAccount(testData.bankAccount.bankName, testData.bankAccount.routingNumber, testData.bankAccount.accountNumber);
     });
 
-    //9 Should delete bank account
     it('9 Should delete bank account', function () {
         cy.login(testData.testuser.username, testData.testuser.password);
         cy.deleteBankAccount(testData.bankAccountIdToDelete, testData.bankAccountNameToDelete);

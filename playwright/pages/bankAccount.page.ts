@@ -5,7 +5,6 @@ import { AccountPage } from "./account.page";
 
 export class BankAccountPage {
     readonly page : Page;
-    readonly headerLocator = 'transaction-detail-header';
 
     constructor(page : Page) {
         this.page = page;

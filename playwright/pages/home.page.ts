@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import {expect, test} from "@playwright/test";
+import { expect } from "@playwright/test";
 import { SideBlock } from "./sideBlock";
 import { AccountPage } from "./account.page";
 import { TransactionDetailsPage } from "./transactionDetails.page";
@@ -32,8 +32,8 @@ export class HomePage {
         return new BankAccountPage(this.page);
     }
 
-    async openTransaction(transactionIdToCheck: string) {
-        await this.page.getByTestId(`transaction-item-${transactionIdToCheck}`).click();
+    async openTransaction(transactionId: string) {
+        await this.page.getByTestId(`transaction-item-${transactionId}`).click();
         return new TransactionDetailsPage(this.page);
     }
 

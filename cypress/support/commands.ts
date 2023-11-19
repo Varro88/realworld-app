@@ -12,6 +12,8 @@ import "@percy/cypress";
 import "./auth-provider-commands/auth0";
 import "./auth-provider-commands/okta";
 
+import selectors from './selectors';
+
 // custom command to make taking snapshots with full name
 // formed from the test title + suffix easier
 // cy.visualSnapshot() // default full test title
@@ -365,68 +367,68 @@ Cypress.Commands.add("loginByGoogleApi", () => {
 });
 
 Cypress.Commands.add("signUpUser", (user) => {
-  cy.get('[data-test="signup"]').click();
-  cy.get('#firstName').type(user.firstName);
-  cy.get('#lastName').type(user.lastName);
-  cy.get('#username').type(user.username);
-  cy.get('#password').type(user.password);
-  cy.get('#confirmPassword').type(user.password);
-  cy.get('[data-test="signup-submit"]').click();
+  cy.get(selectors.signin.signupButton).click();
+  cy.get(selectors.signup.firstNameInput).type(user.firstName);
+  cy.get(selectors.signup.lastNameInput).type(user.lastName);
+  cy.get(selectors.signup.usernameInput).type(user.username);
+  cy.get(selectors.signup.passwordInput).type(user.password);
+  cy.get(selectors.signup.confirmPasswordInput).type(user.password);
+  cy.get(selectors.signup.signupSubmitButton).click();
 });
 
 Cypress.Commands.add("verifyUsername", (username) => {
-  cy.get('[data-test=sidenav-username]').should('exist').contains(username);
+  cy.get(selectors.side.usernameLabel).should('exist').contains(username);
 });
 
 Cypress.Commands.add("verifyEmail", (email) => {
-  cy.get('[data-test="sidenav-user-settings"]').click();
+  cy.get(selectors.side.settingsMenuItem).click();
   cy.get('h2').should('have.text', 'User Settings');
-  cy.get('#user-settings-email-input').should('have.value', email);
+  cy.get(selectors.settings.emailInput).should('have.value', email);
 });
 
 Cypress.Commands.add("updateFirstName", (newName) => {
-  cy.get('#user-settings-firstName-input').clear().type(newName);
-  cy.get('[data-test="user-settings-submit"]').click();
+  cy.get(selectors.settings.firstNameInput).clear().type(newName);
+  cy.get(selectors.settings.submitButton).click();
   cy.reload();
-  cy.get('#user-settings-firstName-input').should("have.value", newName);
+  cy.get(selectors.settings.firstNameInput).should("have.value", newName);
 });
 
 Cypress.Commands.add("verifyBalance", (balance) => {
-  cy.get('[data-test="sidenav-user-balance"]').should('exist').should('have.text', balance);
+  cy.get(selectors.side.balanceLabel).should('exist').should('have.text', balance);
 })
 
-Cypress.Commands.add("openMineTransactions", () => { cy.get('[data-test="nav-personal-tab"]').click(); })
+Cypress.Commands.add("openMineTransactions", () => { cy.get(selectors.transactions.mineTab).click(); })
 
 Cypress.Commands.add("verifyTransactionInList", (id, amount) => {
-  cy.get(`[data-test="transaction-amount-${id}"]`).should('exist')
+  cy.get(selectors.transactions.transactionAmount(id)).should('exist')
     .should('have.text', amount);
 });
 
 Cypress.Commands.add("openTransaction", (id) => {
-  cy.get(`[data-test="transaction-amount-${id}"]`).click();
-  cy.get('h2[data-test="transaction-detail-header"]').should('have.text', 'Transaction Detail');
+  cy.get(selectors.transactions.transactionItem(id)).click();
+  cy.get(selectors.transactions.transactionTitle).should('have.text', 'Transaction Detail');
 });
 
 Cypress.Commands.add("verifySeparateTransaction", (id, amount) => {
-  cy.get(`[data-test="transaction-amount-${id}"]`).should('exist')
+  cy.get(selectors.transactions.transactionAmount(id)).should('exist')
     .should('have.text', amount);
 });
 
 Cypress.Commands.add("createBankAccount", (bank, number, account) => {
-  cy.get('[data-test="sidenav-bankaccounts"]').click();
-  cy.get('[data-test="bankaccount-new"]').click()
+  cy.get(selectors.side.bankAccountMenuItem).click();
+  cy.get(selectors.bankAccount.createNewButton).click()
 
-  cy.get('#bankaccount-bankName-input').type(bank);
-  cy.get('#bankaccount-routingNumber-input').type(number);
-  cy.get('#bankaccount-accountNumber-input').type(account);
-  cy.get('[data-test="bankaccount-submit"]').click();
+  cy.get(selectors.newBankAccount.bankNameInput).type(bank);
+  cy.get(selectors.newBankAccount.routingNumberInput).type(number);
+  cy.get(selectors.newBankAccount.accountNumberInput).type(account);
+  cy.get(selectors.newBankAccount.submitButton).click();
 
   cy.get("li[data-test]").contains(bank).should('exist');
 });
 
 Cypress.Commands.add("deleteBankAccount", (id, name) => {
-  cy.get('[data-test="sidenav-bankaccounts"]').click();
+  cy.get(selectors.side.bankAccountMenuItem).click();
 
-  cy.get(`li[data-test="bankaccount-list-item-${id}"] button[data-test="bankaccount-delete"]`).click();
-  cy.get(`li[data-test="bankaccount-list-item-${id}"]`).should('have.text', `${name} (Deleted)`)
+  cy.get(selectors.bankAccount.deleteAccountButton(id)).click();
+  cy.get(selectors.bankAccount.bankAccountItem(id)).should('have.text', `${name} (Deleted)`)
 })
